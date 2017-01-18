@@ -1,7 +1,8 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
 
 * Студент: [Владислав Дурин](https://up.htmlacademy.ru/javascript/8/user/113967).
-* Наставник: `Неизвестно`.
+* Наставник: [Егор Огарков]
+(https://htmlacademy.ru/profile/id58697).
 
 ---
 
