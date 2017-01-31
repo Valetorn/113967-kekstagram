@@ -6,6 +6,9 @@ var uploadFormCancel = uploadOverlay.querySelector('.upload-form-cancel');
 var filterImagePreview = document.querySelector('.filter-image-preview');
 var controls = document.querySelectorAll('.upload-filter input[type = "radio"]');
 var filterDefault = document.getElementById('upload-filter-none');
+var uploadResizeControlsButtonDec = uploadOverlay.querySelector('.upload-resize-controls-button-dec');
+var uploadResizeControlsButtonInc = uploadOverlay.querySelector('.upload-resize-controls-button-inc');
+var uploadResizeControlsValue = uploadOverlay.querySelector('.upload-resize-controls-value');
 
 uploadFile.addEventListener('change', function () {
   uploadSelectImage.classList.add('invisible');
@@ -14,6 +17,22 @@ uploadFile.addEventListener('change', function () {
 uploadFormCancel.addEventListener('click', function () {
   uploadOverlay.classList.add('invisible');
   uploadSelectImage.classList.remove('invisible');
+});
+uploadResizeControlsButtonDec.addEventListener('click', function () {
+  uploadResizeControlsValue.value = parseInt(uploadResizeControlsValue.value) - 25 + '%';
+  if (parseInt(uploadResizeControlsValue.value) < 25) {
+    uploadResizeControlsValue.value = 25 + '%';
+  }
+  var numberForStyle = parseInt(uploadResizeControlsValue.value) / 100;
+  filterImagePreview.style.transform = 'scale(' + numberForStyle + ')';
+});
+uploadResizeControlsButtonInc.addEventListener('click', function () {
+  uploadResizeControlsValue.value = parseInt(uploadResizeControlsValue.value) + 25 + '%';
+  if (parseInt(uploadResizeControlsValue.value) > 100) {
+    uploadResizeControlsValue.value = 100 + '%';
+  }
+  var numberForStyle = parseInt(uploadResizeControlsValue.value) / 100;
+  filterImagePreview.style.transform = 'scale(' + numberForStyle + ')';
 });
 
 for (var i = 0; i < controls.length; i++) {
