@@ -19,19 +19,19 @@ uploadFormCancel.addEventListener('click', function () {
   uploadSelectImage.classList.remove('invisible');
 });
 uploadResizeControlsButtonDec.addEventListener('click', function () {
-  uploadResizeControlsValue.value = parseInt(uploadResizeControlsValue.value) - 25 + '%';
-  if (parseInt(uploadResizeControlsValue.value) < 25) {
+  uploadResizeControlsValue.value = parseInt(uploadResizeControlsValue.value, 10) - 25 + '%';
+  if (parseInt(uploadResizeControlsValue.value, 10) < 25) {
     uploadResizeControlsValue.value = 25 + '%';
   }
-  var numberForStyle = parseInt(uploadResizeControlsValue.value) / 100;
+  var numberForStyle = parseInt(uploadResizeControlsValue.value, 10) / 100;
   filterImagePreview.style.transform = 'scale(' + numberForStyle + ')';
 });
 uploadResizeControlsButtonInc.addEventListener('click', function () {
-  uploadResizeControlsValue.value = parseInt(uploadResizeControlsValue.value) + 25 + '%';
-  if (parseInt(uploadResizeControlsValue.value) > 100) {
+  uploadResizeControlsValue.value = parseInt(uploadResizeControlsValue.value, 10) + 25 + '%';
+  if (parseInt(uploadResizeControlsValue.value, 10) > 100) {
     uploadResizeControlsValue.value = 100 + '%';
   }
-  var numberForStyle = parseInt(uploadResizeControlsValue.value) / 100;
+  var numberForStyle = parseInt(uploadResizeControlsValue.value, 10) / 100;
   filterImagePreview.style.transform = 'scale(' + numberForStyle + ')';
 });
 
