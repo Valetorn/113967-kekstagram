@@ -7,3 +7,8 @@
 .filter-heat {
   -webkit-filter: brightness(70%) saturate(200%) hue-rotate(170deg);
           filter: brightness(70%) saturate(200%) hue-rotate(170deg);
+}
+.upload-filter-label:focus,
+input[type=radio]:checked + .upload-filter-label {
+  color: #ffe753;
+}
