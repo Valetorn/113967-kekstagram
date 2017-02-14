@@ -54,6 +54,7 @@ uploadFormCancel.addEventListener('keydown', function (evt) {
 uploadResizeControls.addEventListener('click', window.createScale);
 uploadResizeControls.addEventListener('keydown', function (evt) {
   if (activateElem(evt)) {
+    evt.preventDefault();
     window.createScale(evt);
   }
 });
