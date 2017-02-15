@@ -1,9 +1,10 @@
 'use strict';
 
 window.initializeFilters = (function () {
+  var controls = document.querySelectorAll('.upload-filter-controls input[type = "radio"]');
   return function (evt) {
-    for (var i = 0; i < window.controls.length; i++) {
-      window.filterImagePreview.classList.remove('filter-' + window.controls[i].value);
+    for (var i = 0; i < controls.length; i++) {
+      window.filterImagePreview.classList.remove('filter-' + controls[i].value);
     }
     var filter = evt.target;
     if (filter.tagName === 'INPUT') {

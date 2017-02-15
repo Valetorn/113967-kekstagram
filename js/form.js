@@ -5,11 +5,7 @@ var uploadSelectImage = document.getElementById('upload-select-image');
 var uploadFile = document.getElementById('upload-file');
 var uploadFormCancel = uploadOverlay.querySelector('.upload-form-cancel');
 window.filterImagePreview = document.querySelector('.filter-image-preview');
-window.controls = document.querySelectorAll('.upload-filter-controls input[type = "radio"]');
 window.uploadFilterControls = document.querySelector('.upload-filter-controls');
-window.uploadResizeControlsButtonDec = uploadOverlay.querySelector('.upload-resize-controls-button-dec');
-window.uploadResizeControlsButtonInc = uploadOverlay.querySelector('.upload-resize-controls-button-inc');
-window.uploadResizeControlsValue = uploadOverlay.querySelector('.upload-resize-controls-value');
 var uploadResizeControls = uploadOverlay.querySelector('.upload-resize-controls');
 
 var ENTER_KEY_CODE = 13;
@@ -51,13 +47,8 @@ uploadFormCancel.addEventListener('keydown', function (evt) {
     closeUploadOverlay();
   }
 });
-uploadResizeControls.addEventListener('click', window.createScale);
-uploadResizeControls.addEventListener('keydown', function (evt) {
-  if (activateElem(evt)) {
-    evt.preventDefault();
-    window.createScale(evt);
-  }
-});
+
+window.createScale(uploadResizeControls, 25, '100%');
 window.uploadFilterControls.addEventListener('click', window.initializeFilters);
 window.uploadFilterControls.addEventListener('keydown', function (evt) {
   if (activateElem(evt)) {
