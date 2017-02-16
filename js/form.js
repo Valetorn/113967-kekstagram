@@ -6,7 +6,7 @@ var uploadFile = document.getElementById('upload-file');
 var uploadFormCancel = uploadOverlay.querySelector('.upload-form-cancel');
 window.filterImagePreview = document.querySelector('.filter-image-preview');
 window.uploadFilterControls = document.querySelector('.upload-filter-controls');
-var uploadResizeControls = uploadOverlay.querySelector('.upload-resize-controls');
+var uploadResizeControlsValue = uploadOverlay.querySelector('.upload-resize-controls-value');
 
 var ENTER_KEY_CODE = 13;
 var ESCAPE_KEY_CODE = 27;
@@ -48,7 +48,7 @@ uploadFormCancel.addEventListener('keydown', function (evt) {
   }
 });
 
-window.createScale(uploadResizeControls, 25, '100%');
+window.initializeScale(uploadResizeControlsValue, 25, '100%');
 window.uploadFilterControls.addEventListener('click', window.initializeFilters);
 window.uploadFilterControls.addEventListener('keydown', function (evt) {
   if (activateElem(evt)) {
