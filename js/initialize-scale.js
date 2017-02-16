@@ -8,7 +8,14 @@ window.initializeScale = (function () {
     var uploadResizeControlsButtonInc = resizeControls.querySelector('.upload-resize-controls-button-inc');
     var resizeStep = step;
 
-    resizeControlsValue.value = defaultValue;
+    if (parseInt(defaultValue, 10) >= 25 && parseInt(defaultValue, 10) <= 100) {
+      resizeControlsValue.value = defaultValue;
+    } else if (parseInt(defaultValue, 10) <= 25) {
+      resizeControlsValue.value = '25%';
+    } else {
+      resizeControlsValue.value = '100%';
+    }
+
     var scaleNumber = parseInt(resizeControlsValue.value, 10) / 100;
     window.filterImagePreview.style.transform = 'scale(' + scaleNumber + ')';
 
