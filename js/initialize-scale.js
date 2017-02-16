@@ -7,24 +7,26 @@ window.initializeScale = (function () {
     var uploadResizeControlsButtonDec = resizeControls.querySelector('.upload-resize-controls-button-dec');
     var uploadResizeControlsButtonInc = resizeControls.querySelector('.upload-resize-controls-button-inc');
     var resizeStep = step;
+    var minValue = 25;
+    var maxValue = 100;
 
-    if (parseInt(defaultValue, 10) >= 25 && parseInt(defaultValue, 10) <= 100) {
+    if (parseInt(defaultValue, 10) >= minValue && parseInt(defaultValue, 10) <= maxValue) {
       resizeControlsValue.value = defaultValue;
     } else if (parseInt(defaultValue, 10) <= 25) {
-      resizeControlsValue.value = '25%';
+      resizeControlsValue.value = minValue + '%';
     } else {
-      resizeControlsValue.value = '100%';
+      resizeControlsValue.value = maxValue + '%';
     }
 
     var scaleNumber = parseInt(resizeControlsValue.value, 10) / 100;
     window.filterImagePreview.style.transform = 'scale(' + scaleNumber + ')';
 
     var maxOrMinValue = function () {
-      if (parseInt(resizeControlsValue.value, 10) < 25) {
-        resizeControlsValue.value = 25 + '%';
+      if (parseInt(resizeControlsValue.value, 10) < minValue) {
+        resizeControlsValue.value = minValue + '%';
       }
-      if (parseInt(resizeControlsValue.value, 10) > 100) {
-        resizeControlsValue.value = 100 + '%';
+      if (parseInt(resizeControlsValue.value, 10) > maxValue) {
+        resizeControlsValue.value = maxValue + '%';
       }
       return resizeControlsValue.value;
     };
