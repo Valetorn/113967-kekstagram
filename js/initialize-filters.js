@@ -5,7 +5,7 @@ window.initializeFilters = (function () {
     element.addEventListener('click', function (evt) {
       var filter = evt.target;
       if (filter.tagName === 'INPUT') {
-        window.utils.applyFilter(filter.value);
+        window.applyFilter(filter.value);
       }
     });
     element.addEventListener('keydown', function (evt) {

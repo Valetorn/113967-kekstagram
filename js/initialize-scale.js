@@ -16,7 +16,7 @@ window.initializeScale = (function () {
     }
 
     var scaleNumber = parseInt(resizeControlsValue.value, 10) / 100;
-    window.utils.adjustScale(scaleNumber);
+    window.adjustScale(scaleNumber);
 
     var setScale = function (evt) {
       var resizeBtn = evt.target;
@@ -36,7 +36,7 @@ window.initializeScale = (function () {
         resizeControlsValue.value = scale + '%';
       }
       scaleNumber = parseInt(resizeControlsValue.value, 10) / 100;
-      window.utils.adjustScale(scaleNumber);
+      window.adjustScale(scaleNumber);
     };
     element.addEventListener('click', function (evt) {
       setScale(evt);

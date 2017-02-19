@@ -7,28 +7,39 @@ var uploadFormCancel = uploadOverlay.querySelector('.upload-form-cancel');
 window.filterImagePreview = document.querySelector('.filter-image-preview');
 var uploadFilterControls = document.querySelector('.upload-filter-controls');
 var uploadResizeControls = uploadOverlay.querySelector('.upload-resize-controls');
+var oldFilter = null;
 
-function changeAriaAttribute(isOpen) {
+var changeAriaAttribute = function (isOpen) {
   uploadOverlay.setAttribute('aria-pressed', !isOpen);
-}
-function uploadOverlayKeydownHandler(evt) {
+};
+var uploadOverlayKeydownHandler = function (evt) {
   if (window.utils.isDeactivationEvent(evt)) {
     closeUploadOverlay();
     changeAriaAttribute(false);
   }
-}
-function openUploadOverlay() {
+};
+var openUploadOverlay = function () {
   uploadSelectImage.classList.add('invisible');
   uploadOverlay.classList.remove('invisible');
   document.addEventListener('keydown', uploadOverlayKeydownHandler);
   changeAriaAttribute(true);
-}
-function closeUploadOverlay() {
+};
+var closeUploadOverlay = function () {
   uploadOverlay.classList.add('invisible');
   uploadSelectImage.classList.remove('invisible');
   document.removeEventListener('keydown', uploadOverlayKeydownHandler);
   changeAriaAttribute(false);
-}
+};
+window.applyFilter = function (newFilter) {
+  if (oldFilter) {
+    window.filterImagePreview.classList.remove('filter-' + oldFilter);
+  }
+  window.filterImagePreview.classList.add('filter-' + newFilter);
+  oldFilter = newFilter;
+};
+window.adjustScale = function (scale) {
+  window.filterImagePreview.style.transform = 'scale(' + scale + ')';
+};
 
 uploadFile.addEventListener('change', function () {
   openUploadOverlay();
