@@ -5,20 +5,14 @@ var uploadSelectImage = document.getElementById('upload-select-image');
 var uploadFile = document.getElementById('upload-file');
 var uploadFormCancel = uploadOverlay.querySelector('.upload-form-cancel');
 window.filterImagePreview = document.querySelector('.filter-image-preview');
-window.uploadFilterControls = document.querySelector('.upload-filter-controls');
+var uploadFilterControls = document.querySelector('.upload-filter-controls');
 var uploadResizeControls = uploadOverlay.querySelector('.upload-resize-controls');
 
-var ENTER_KEY_CODE = 13;
-var ESCAPE_KEY_CODE = 27;
-
-function activateElem(evt) {
-  return evt.keyCode && evt.keyCode === ENTER_KEY_CODE;
-}
 function changeAriaAttribute(isOpen) {
   uploadOverlay.setAttribute('aria-pressed', !isOpen);
 }
 function uploadOverlayKeydownHandler(evt) {
-  if (evt.keyCode === ESCAPE_KEY_CODE) {
+  if (window.utils.isDeactivationEvent(evt)) {
     closeUploadOverlay();
     changeAriaAttribute(false);
   }
@@ -43,17 +37,13 @@ uploadFormCancel.addEventListener('click', function () {
   closeUploadOverlay();
 });
 uploadFormCancel.addEventListener('keydown', function (evt) {
-  if (activateElem(evt)) {
+  if (window.utils.isActivationEvent(evt)) {
     closeUploadOverlay();
   }
 });
 
-window.initializeScale(uploadResizeControls, 25, '100%');
-window.uploadFilterControls.addEventListener('click', window.initializeFilters);
-window.uploadFilterControls.addEventListener('keydown', function (evt) {
-  if (activateElem(evt)) {
-    window.initializeFilters(evt);
-  }
-});
-
+/* функция вызывается из модуля initialize-scale.js */
+window.initializeScale(uploadResizeControls, 25, 100);
+/* функция вызывается из модуля initialize-filters.js */
+window.initializeFilters(uploadFilterControls);
 
