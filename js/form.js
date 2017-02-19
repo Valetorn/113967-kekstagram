@@ -5,7 +5,7 @@ var uploadSelectImage = document.getElementById('upload-select-image');
 var uploadFile = document.getElementById('upload-file');
 var uploadFormCancel = uploadOverlay.querySelector('.upload-form-cancel');
 window.filterImagePreview = document.querySelector('.filter-image-preview');
-window.uploadFilterControls = document.querySelector('.upload-filter-controls');
+var uploadFilterControls = document.querySelector('.upload-filter-controls');
 var uploadResizeControls = uploadOverlay.querySelector('.upload-resize-controls');
 
 function changeAriaAttribute(isOpen) {
@@ -43,7 +43,7 @@ uploadFormCancel.addEventListener('keydown', function (evt) {
 });
 
 /* функция вызывается из модуля initialize-scale.js */
-window.initializeScale(uploadResizeControls, 25, '100%', window.utils.adjustScale);
+window.initializeScale(uploadResizeControls, 25, 100);
 /* функция вызывается из модуля initialize-filters.js */
-window.initializeFilters(window.uploadFilterControls, window.utils.applyFilter);
+window.initializeFilters(uploadFilterControls);
 
