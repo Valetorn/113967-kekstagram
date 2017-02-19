@@ -4,7 +4,7 @@ var uploadOverlay = document.querySelector('.upload-overlay');
 var uploadSelectImage = document.getElementById('upload-select-image');
 var uploadFile = document.getElementById('upload-file');
 var uploadFormCancel = uploadOverlay.querySelector('.upload-form-cancel');
-window.filterImagePreview = document.querySelector('.filter-image-preview');
+var filterImagePreview = document.querySelector('.filter-image-preview');
 var uploadFilterControls = document.querySelector('.upload-filter-controls');
 var uploadResizeControls = uploadOverlay.querySelector('.upload-resize-controls');
 var oldFilter = null;
@@ -30,15 +30,15 @@ var closeUploadOverlay = function () {
   document.removeEventListener('keydown', uploadOverlayKeydownHandler);
   changeAriaAttribute(false);
 };
-window.applyFilter = function (newFilter) {
+var applyFilter = function (newFilter) {
   if (oldFilter) {
-    window.filterImagePreview.classList.remove('filter-' + oldFilter);
+    filterImagePreview.classList.remove('filter-' + oldFilter);
   }
-  window.filterImagePreview.classList.add('filter-' + newFilter);
+  filterImagePreview.classList.add('filter-' + newFilter);
   oldFilter = newFilter;
 };
-window.adjustScale = function (scale) {
-  window.filterImagePreview.style.transform = 'scale(' + scale + ')';
+var adjustScale = function (scale) {
+  filterImagePreview.style.transform = 'scale(' + scale + ')';
 };
 
 uploadFile.addEventListener('change', function () {
@@ -54,7 +54,7 @@ uploadFormCancel.addEventListener('keydown', function (evt) {
 });
 
 /* функция вызывается из модуля initialize-scale.js */
-window.initializeScale(uploadResizeControls, 25, 100);
+window.initializeScale(uploadResizeControls, 25, 100, adjustScale);
 /* функция вызывается из модуля initialize-filters.js */
-window.initializeFilters(uploadFilterControls);
+window.initializeFilters(uploadFilterControls, applyFilter);
 
