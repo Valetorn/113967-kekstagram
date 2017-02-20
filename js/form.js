@@ -9,7 +9,7 @@ var uploadFilterControls = document.querySelector('.upload-filter-controls');
 var uploadResizeControls = uploadOverlay.querySelector('.upload-resize-controls');
 var oldFilter = null;
 var filterDefault = document.getElementById('upload-filter-none').value;
-var scaleDefault = 1;
+var scaleDefault = 100;
 
 var changeAriaAttribute = function (isOpen) {
   uploadOverlay.setAttribute('aria-pressed', !isOpen);
@@ -42,7 +42,7 @@ var applyFilter = function (newFilter) {
   oldFilter = newFilter;
 };
 var adjustScale = function (scale) {
-  filterImagePreview.style.transform = 'scale(' + scale + ')';
+  filterImagePreview.style.transform = 'scale(' + parseInt(scale, 10) / 100 + ')';
 };
 
 uploadFile.addEventListener('change', function () {
@@ -58,7 +58,7 @@ uploadFormCancel.addEventListener('keydown', function (evt) {
 });
 
 /* функция вызывается из модуля initialize-scale.js */
-window.initializeScale(uploadResizeControls, 25, 100, adjustScale);
+window.initializeScale(uploadResizeControls, 25, scaleDefault, adjustScale);
 /* функция вызывается из модуля initialize-filters.js */
 window.initializeFilters(uploadFilterControls, applyFilter);
 
