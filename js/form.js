@@ -8,6 +8,8 @@ var filterImagePreview = document.querySelector('.filter-image-preview');
 var uploadFilterControls = document.querySelector('.upload-filter-controls');
 var uploadResizeControls = uploadOverlay.querySelector('.upload-resize-controls');
 var oldFilter = null;
+var filterDefault = document.getElementById('upload-filter-none').value;
+var scaleDefault = 1;
 
 var changeAriaAttribute = function (isOpen) {
   uploadOverlay.setAttribute('aria-pressed', !isOpen);
@@ -29,6 +31,8 @@ var closeUploadOverlay = function () {
   uploadSelectImage.classList.remove('invisible');
   document.removeEventListener('keydown', uploadOverlayKeydownHandler);
   changeAriaAttribute(false);
+  applyFilter(filterDefault);
+  adjustScale(scaleDefault);
 };
 var applyFilter = function (newFilter) {
   if (oldFilter) {
