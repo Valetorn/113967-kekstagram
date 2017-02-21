@@ -7,6 +7,7 @@ var uploadFormCancel = uploadOverlay.querySelector('.upload-form-cancel');
 var filterImagePreview = document.querySelector('.filter-image-preview');
 var uploadFilterControls = document.querySelector('.upload-filter-controls');
 var uploadResizeControls = uploadOverlay.querySelector('.upload-resize-controls');
+var uploadFilter = document.getElementById('upload-filter');
 var oldFilter = null;
 var filterDefault = document.getElementById('upload-filter-none').value;
 var scaleDefault = 100;
@@ -17,6 +18,7 @@ var changeAriaAttribute = function (isOpen) {
 var uploadOverlayKeydownHandler = function (evt) {
   if (window.utils.isDeactivationEvent(evt)) {
     closeUploadOverlay();
+    uploadFilter.reset();
     changeAriaAttribute(false);
   }
 };
