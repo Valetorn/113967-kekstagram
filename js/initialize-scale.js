@@ -2,7 +2,7 @@
 
 
 window.initializeScale = (function () {
-  return function (element, resizeStep, defaultValue) {
+  return function (element, resizeStep, defaultValue, callback) {
     var resizeControlsValue = element.querySelector('.upload-resize-controls-value');
     var minValue = 25;
     var maxValue = 100;
@@ -15,8 +15,8 @@ window.initializeScale = (function () {
       resizeControlsValue.value = maxValue + '%';
     }
 
-    var scaleNumber = parseInt(resizeControlsValue.value, 10) / 100;
-    window.utils.adjustScale(scaleNumber);
+    resizeControlsValue.setAttribute('value', defaultValue + '%');
+    callback(resizeControlsValue.value);
 
     var setScale = function (evt) {
       var resizeBtn = evt.target;
@@ -35,8 +35,7 @@ window.initializeScale = (function () {
         }
         resizeControlsValue.value = scale + '%';
       }
-      scaleNumber = parseInt(resizeControlsValue.value, 10) / 100;
-      window.utils.adjustScale(scaleNumber);
+      callback(resizeControlsValue.value);
     };
     element.addEventListener('click', function (evt) {
       setScale(evt);
