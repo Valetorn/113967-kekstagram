@@ -12,6 +12,8 @@ var oldFilter = null;
 var filterDefault = document.getElementById('upload-filter-none').value;
 var scaleDefault = 100;
 
+var DATA_URL = 'https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/data';
+
 var changeAriaAttribute = function (isOpen) {
   uploadOverlay.setAttribute('aria-pressed', !isOpen);
 };
@@ -59,8 +61,12 @@ uploadFormCancel.addEventListener('keydown', function (evt) {
   }
 });
 
-/* функция вызывается из модуля initialize-scale.js */
 window.initializeScale(uploadResizeControls, 25, scaleDefault, adjustScale);
-/* функция вызывается из модуля initialize-filters.js */
 window.initializeFilters(uploadFilterControls, applyFilter);
+window.load(DATA_URL, function (data) {
+  window.pictures(data);
+}, function (err) {
+  window.console.log(err);
+  uploadOverlay.innerHTML = err;
+});
 
