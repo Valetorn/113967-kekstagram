@@ -1,7 +1,7 @@
 'use strict';
 
 window.load = (function () {
-  return function (url, onLoad, onError) {
+  return function (url, onLoad) {
     var xhr = new XMLHttpRequest();
     xhr.addEventListener('load', function (evt) {
       onLoad(evt.target.response);
