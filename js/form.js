@@ -65,8 +65,5 @@ window.initializeScale(uploadResizeControls, 25, scaleDefault, adjustScale);
 window.initializeFilters(uploadFilterControls, applyFilter);
 window.load(DATA_URL, function (data) {
   window.pictures(data);
-}, function (err) {
-  window.console.log(err);
-  uploadOverlay.innerHTML = err;
 });
 

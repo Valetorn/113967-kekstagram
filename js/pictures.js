@@ -3,6 +3,7 @@
 window.pictures = (function () {
   var pictureTemplate = document.querySelector('#picture-template');
   var picturesContainer = document.querySelector('.pictures');
+  var galleryOverlayClose = document.querySelector('.gallery-overlay-close');
   return function (pictures) {
     var elementToClone = pictureTemplate.content.querySelector('.picture');
     pictures.forEach(function (element) {
@@ -14,14 +15,17 @@ window.pictures = (function () {
       var pictureImg = pictureElement.querySelector('img').src;
       var pictureLikes = pictureElement.querySelector('.picture-likes').textContent;
       var pictureComments = pictureElement.querySelector('.picture-comments').textContent;
-      pictureElement.addEventListener('click', function (evt) {
+      var showPicturesInfo = function (evt) {
         evt.preventDefault();
         window.showGalery(pictureImg, pictureLikes, pictureComments);
+      };
+      pictureElement.addEventListener('click', function (evt) {
+        showPicturesInfo(evt);
       });
       pictureElement.addEventListener('keydown', function (evt) {
         if (window.utils.isActivationEvent(evt)) {
-          evt.preventDefault();
-          window.showGalery(pictureImg, pictureLikes, pictureComments);
+          showPicturesInfo(evt);
+          galleryOverlayClose.focus();
         }
       });
     });
