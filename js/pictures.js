@@ -3,7 +3,6 @@
 window.pictures = (function () {
   var pictureTemplate = document.querySelector('#picture-template');
   var picturesContainer = document.querySelector('.pictures');
-  var galleryOverlayClose = document.querySelector('.gallery-overlay-close');
   return function (pictures) {
     var elementToClone = pictureTemplate.content.querySelector('.picture');
     pictures.forEach(function (element) {
@@ -25,7 +24,7 @@ window.pictures = (function () {
       pictureElement.addEventListener('keydown', function (evt) {
         if (window.utils.isActivationEvent(evt)) {
           showPicturesInfo(evt);
-          galleryOverlayClose.focus();
+          window.setFocus();
         }
       });
     });

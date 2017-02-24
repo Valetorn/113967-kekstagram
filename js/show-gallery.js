@@ -6,6 +6,9 @@ window.showGalery = (function () {
   var galleryLike = galleryOverlay.querySelector('.likes-count');
   var galleryComments = galleryOverlay.querySelector('.comments-count');
   var galleryOverlayClose = galleryOverlay.querySelector('.gallery-overlay-close');
+  window.setFocus = function () {
+    galleryOverlayClose.focus();
+  };
   return function (img, likes, comments) {
     galleryOverlay.classList.remove('invisible');
     galleryImg.src = img;
