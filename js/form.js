@@ -12,8 +12,6 @@ var oldFilter = null;
 var filterDefault = document.getElementById('upload-filter-none').value;
 var scaleDefault = 100;
 
-var DATA_URL = 'https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/data';
-
 var changeAriaAttribute = function (isOpen) {
   uploadOverlay.setAttribute('aria-pressed', !isOpen);
 };
@@ -63,7 +61,4 @@ uploadFormCancel.addEventListener('keydown', function (evt) {
 
 window.initializeScale(uploadResizeControls, 25, scaleDefault, adjustScale);
 window.initializeFilters(uploadFilterControls, applyFilter);
-window.load(DATA_URL, function (data) {
-  window.pictures(data);
-});
 

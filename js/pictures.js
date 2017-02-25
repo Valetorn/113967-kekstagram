@@ -3,7 +3,8 @@
 window.pictures = (function () {
   var pictureTemplate = document.querySelector('#picture-template');
   var picturesContainer = document.querySelector('.pictures');
-  return function (pictures) {
+  var DATA_URL = 'https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/data';
+  var setDataPictures = function (pictures) {
     var elementToClone = pictureTemplate.content.querySelector('.picture');
     pictures.forEach(function (element) {
       var pictureElement = elementToClone.cloneNode(true);
@@ -29,4 +30,5 @@ window.pictures = (function () {
       });
     });
   };
+  window.load(DATA_URL, setDataPictures);
 })();
