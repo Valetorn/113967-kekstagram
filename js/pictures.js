@@ -34,15 +34,34 @@ window.pictures = (function () {
   };
   var filtersSort = function (pictures) {
     filters.classList.remove('hidden');
+    var newPictures = [];
     filters.addEventListener('click', function (evt) {
-      if(String(evt.target.id).match('filter-new')) {
-        pictures.forEach(function (element, index, array) {
-          if (index < 10) {
-            setDataPictures(window.utils.getRandomElementExcept(array, element));
-          }
-        });
+      switch (evt.target.id) {
+        case('filter-popular'):
+          window.utils.cleanContainer(picturesContainer);
+          setDataPictures(pictures);
+          break;
+        case('filter-new'): 
+          window.utils.cleanContainer(picturesContainer);
+          newPictures = window.utils.getRandomArray(pictures.slice(0), 10);
+          setDataPictures(newPictures);
+          break;
+        case('filter-discussed'):
+          window.utils.cleanContainer(picturesContainer);
+          newPictures = sortArray(pictures);
+          setDataPictures(newPictures);
+          break;
       }
     });
+  };
+  var sortArray = function (array) {
+    array.forEach(function (element) {
+      var comments = element.comments.length;
+      array.sort(function (leftElement, rightElement) {
+        return rightElement.comments - leftElement.comments;
+      });
+    });
+    return array;
   };
   window.load(DATA_URL, setDataPictures);
 })();

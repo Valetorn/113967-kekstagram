@@ -22,6 +22,25 @@ window.utils = (function () {
         newElement = this.getRandomElement(array);
       } while (newElement === currentArrayElement);
       return newElement;
+    },
+    getRandomArray: function (array, n) {
+      var randomArray = new Array(n);
+      var length = array.length;
+      var taken = new Array(length);
+      if (n > length) {
+        throw new RangeError('getRandom: more elements taken than available');
+      }
+      while (n--) {
+        var x = Math.floor(Math.random() * length);
+        randomArray[n] = array[x in taken ? taken[x] : x];
+        taken[x] = --length;
+      }
+      return randomArray;
+    },
+    cleanContainer: function (container) {
+      while (container.firstChild) {
+        container.removeChild(container.firstChild);
+      }
     }
   };
 })();
