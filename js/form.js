@@ -59,8 +59,6 @@ uploadFormCancel.addEventListener('keydown', function (evt) {
   }
 });
 
-/* функция вызывается из модуля initialize-scale.js */
 window.initializeScale(uploadResizeControls, 25, scaleDefault, adjustScale);
-/* функция вызывается из модуля initialize-filters.js */
 window.initializeFilters(uploadFilterControls, applyFilter);
 
