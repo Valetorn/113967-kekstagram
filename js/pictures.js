@@ -3,6 +3,7 @@
 window.pictures = (function () {
   var pictureTemplate = document.querySelector('#picture-template');
   var picturesContainer = document.querySelector('.pictures');
+  var filters = document.querySelector('.filters');
   var DATA_URL = 'https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/data';
   var setDataPictures = function (pictures) {
     var elementToClone = pictureTemplate.content.querySelector('.picture');
@@ -28,6 +29,19 @@ window.pictures = (function () {
           window.setFocus();
         }
       });
+    });
+    filtersSort(pictures);
+  };
+  var filtersSort = function (pictures) {
+    filters.classList.remove('hidden');
+    filters.addEventListener('click', function (evt) {
+      if(String(evt.target.id).match('filter-new')) {
+        pictures.forEach(function (element, index, array) {
+          if (index < 10) {
+            setDataPictures(window.utils.getRandomElementExcept(array, element));
+          }
+        });
+      }
     });
   };
   window.load(DATA_URL, setDataPictures);
