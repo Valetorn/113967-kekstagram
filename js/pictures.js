@@ -41,27 +41,23 @@ window.pictures = (function () {
           window.utils.cleanContainer(picturesContainer);
           setDataPictures(pictures);
           break;
-        case('filter-new'): 
+        case('filter-new'):
           window.utils.cleanContainer(picturesContainer);
           newPictures = window.utils.getRandomArray(pictures.slice(0), 10);
           setDataPictures(newPictures);
           break;
         case('filter-discussed'):
           window.utils.cleanContainer(picturesContainer);
-          newPictures = sortArray(pictures);
-          setDataPictures(newPictures);
+          setDataPictures(sortArray(pictures));
           break;
       }
     });
   };
   var sortArray = function (array) {
-    array.forEach(function (element) {
-      var comments = element.comments.length;
-      array.sort(function (leftElement, rightElement) {
-        return rightElement.comments - leftElement.comments;
-      });
+    var sortPictures = array.slice().sort(function (left, right) {
+      return left.comments.length - right.comments.length;
     });
-    return array;
+    return sortPictures;
   };
   window.load(DATA_URL, setDataPictures);
 })();
