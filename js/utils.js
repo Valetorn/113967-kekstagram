@@ -23,19 +23,15 @@ window.utils = (function () {
       } while (newElement === currentArrayElement);
       return newElement;
     },
-    getRandomArray: function (array, n) {
-      var randomArray = new Array(n);
-      var length = array.length;
-      var taken = new Array(length);
-      if (n > length) {
-        throw new RangeError('getRandom: more elements taken than available');
+    getRandomArray: function (array, quantity) {
+      var tempArray = array.slice();
+      var result = [];
+      for (var i = 0; i < quantity; i++) {
+        var index = Math.floor(Math.random() * tempArray.length);
+        result.push(tempArray[index]);
+        tempArray.splice(index, 1);
       }
-      while (n--) {
-        var x = Math.floor(Math.random() * length);
-        randomArray[n] = array[x in taken ? taken[x] : x];
-        taken[x] = --length;
-      }
-      return randomArray;
+      return result;
     },
     cleanContainer: function (container) {
       while (container.firstChild) {

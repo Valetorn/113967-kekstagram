@@ -43,7 +43,7 @@ window.pictures = (function () {
           break;
         case('filter-new'):
           window.utils.cleanContainer(picturesContainer);
-          newPictures = window.utils.getRandomArray(pictures.slice(0), 10);
+          newPictures = window.utils.getRandomArray(pictures, 10);
           setDataPictures(newPictures);
           break;
         case('filter-discussed'):
