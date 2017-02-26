@@ -5,6 +5,12 @@ window.pictures = (function () {
   var picturesContainer = document.querySelector('.pictures');
   var filters = document.querySelector('.filters');
   var DATA_URL = 'https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/data';
+
+  var getData = function (data) {
+    setDataPictures(data);
+    filters.classList.remove('hidden');
+    choseFilters(data);
+  };
   var setDataPictures = function (pictures) {
     var elementToClone = pictureTemplate.content.querySelector('.picture');
     pictures.forEach(function (element) {
@@ -30,34 +36,47 @@ window.pictures = (function () {
         }
       });
     });
-    filtersSort(pictures);
   };
-  var filtersSort = function (pictures) {
-    filters.classList.remove('hidden');
-    var newPictures = [];
-    filters.addEventListener('click', function (evt) {
+  var choseFilters = function (pictures) {
+    var showFilters = function (evt) {
       switch (evt.target.id) {
-        case('filter-popular'):
+        case ('filter-popular') :
           window.utils.cleanContainer(picturesContainer);
           setDataPictures(pictures);
           break;
-        case('filter-new'):
+        case ('filter-new'):
           window.utils.cleanContainer(picturesContainer);
-          newPictures = window.utils.getRandomArray(pictures, 10);
-          setDataPictures(newPictures);
+          setDataPictures(randomFilter(pictures));
           break;
-        case('filter-discussed'):
+        case ('filter-discussed'):
           window.utils.cleanContainer(picturesContainer);
-          setDataPictures(sortArray(pictures));
+          setDataPictures(sortFilter(pictures));
           break;
       }
+    };
+    filters.addEventListener('click', function (evt) {
+      showFilters(evt);
     });
+    filters.addEventListener('keydown', function (evt) {
+      if (window.utils.isActivationEvent(evt)) {
+        evt.target.click();
+        showFilters(evt);
+      }
+    });
+    var sortFilter = function (picturesForDiscussed) {
+      var discussedPictures = Array.from(picturesForDiscussed);
+      return sortArray(discussedPictures);
+    };
+    var randomFilter = function (picturesForNew) {
+      var newPictures = Array.from(picturesForNew);
+      return window.utils.getRandomArray(newPictures, 10);
+    };
   };
   var sortArray = function (array) {
     var sortPictures = array.slice().sort(function (left, right) {
-      return left.comments.length - right.comments.length;
+      return right.comments.length - left.comments.length;
     });
     return sortPictures;
   };
-  window.load(DATA_URL, setDataPictures);
+  window.load(DATA_URL, getData);
 })();

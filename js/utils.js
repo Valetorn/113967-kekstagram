@@ -13,16 +13,6 @@ window.utils = (function () {
     isDeactivationEvent: function (evt) {
       return isKeyboardEvent(evt) && evt.keyCode === ESCAPE_KEY_CODE;
     },
-    getRandomElement: function (array) {
-      return array[Math.floor(Math.random() * array.length)];
-    },
-    getRandomElementExcept: function (array, currentArrayElement) {
-      var newElement;
-      do {
-        newElement = this.getRandomElement(array);
-      } while (newElement === currentArrayElement);
-      return newElement;
-    },
     getRandomArray: function (array, quantity) {
       var tempArray = array.slice();
       var result = [];
